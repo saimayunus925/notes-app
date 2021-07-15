@@ -1,5 +1,5 @@
 
-from .notes_app import notes_app # importing our app object
+from notes_app import notes_app # importing our app object
 
 if __name__ == "__main__": 
     # if the current module's name == the main program's name, i.e. if the current module is the main program
