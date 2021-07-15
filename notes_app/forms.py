@@ -6,6 +6,7 @@ from wtforms import Form, StringField, PasswordField, SubmitField, TextAreaField
 class AddNote(Form):
     title = StringField('Title', [validators.DataRequired()]) # note title, can't be empty
     content = TextAreaField('Content', [validators.DataRequired()]) # note content, also can't be empty
+    submit_button = SubmitField('Add Note') # the 'submit' button for the 'add-note' form
 
 # 'register' form
 class SignUp(Form):
