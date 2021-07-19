@@ -1,5 +1,7 @@
 
-from flask import Flask # importing Flask obj from "flask" module
+from flask import Flask, render_template # importing Flask obj from "flask" module
+# also importing 'render_template' to render HTML templates
+
 from flask_pymongo import PyMongo # importing PyMongo() obj to connect/interface with our MongoDB database
 from .forms import AddNote # testing if we can import from 'forms.py' 
 
@@ -18,7 +20,7 @@ notesDB = PyMongo(notes_app) # initializing PyMongo() obj for use with our app o
 @notes_app.route('/')
 @notes_app.route('/index')
 def index():
-    return "This is a homepage!"
+    return render_template('index.html')
 
 # 'add note' route
 @notes_app.route('/add_note')
