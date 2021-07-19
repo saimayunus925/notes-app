@@ -1,0 +1,18 @@
+
+{% extends 'base.html' %}
+
+{% block title %}Add Note{% endblock %}
+
+{% block content %}
+    <form action="/add_note" method="POST">
+        <!-- we are POSTing our note data to 'add_note' route whenever we submit the form -->
+        {{ note_form.hidden_tag() }} <!-- security stuff -->
+        <!-- note title -->
+        {{ note_form.title.label }} {{ note_form.title }} 
+        <!-- note content -->
+        {{ note_form.content.label }} 
+        {{ note_form.content }}
+        <!-- 'add note' button -->
+        {{ note_form.submit_button }}
+    </form>
+{% endblock %}
