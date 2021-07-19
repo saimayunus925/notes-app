@@ -1,6 +1,7 @@
 
 from flask import Flask # importing Flask obj from "flask" module
 from flask_pymongo import PyMongo # importing PyMongo() obj to connect/interface with our MongoDB database
+from .forms import AddNote # testing if we can import from 'forms.py' and return AddNote() obj from index route
 
 notes_app = Flask(__name__) # initializing our app obj with the current module name
 notes_app.config["MONGO_URI"] = "" # configuring the DB's location here
