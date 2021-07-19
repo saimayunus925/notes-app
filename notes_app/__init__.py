@@ -32,13 +32,13 @@ def add_note():
     # that will be our final 'notes_form' obj
     if request.method == 'POST': 
         # data's been POSTed from 'add note' form? insert that data into our DB
-        myNotesTable = notesDB.db # our collection/table of notes
+        myNotesTable = notesDB.db.notes # our collection/table of notes
         # new 'note' record/Python dict/JS obj/MongoDB doc, populated by our form data, to insert into our DB
         newNote = {
             "title": notes_form.title.data,
             "content": notes_form.content.data
         }
-        myNotesTable.insertOne(newNote) # inserting the 'note' obj/record into our DB
+        myNotesTable.insert_one(newNote) # inserting the 'note' obj/record into our DB
         flash("Note added successfully!") # 'success' feedback msg if note was added correctly
         return redirect(url_for("index")) # return to home page
     else: 
