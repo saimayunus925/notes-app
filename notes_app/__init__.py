@@ -6,6 +6,14 @@ notes_app = Flask(__name__) # initializing our app obj with the current module n
 notes_app.config["MONGO_URI"] = "" # configuring the DB's location here
 notesDB = PyMongo(notes_app) # initializing PyMongo() obj for use with our app obj
 
+''' ROUTES ARE BELOW FOR NOW '''
+
+@notes_app.route('/')
+@notes_app.route('/index')
+def index():
+    n = AddNote()
+    return n
+
 
 ''' FORMS ARE BELOW FOR NOW '''
 
@@ -36,9 +44,3 @@ class SignIn(Form):
     submit_button = SubmitField('Sign In') # the 'submit' button for the sign-in form
 
 
-''' ROUTES ARE BELOW FOR NOW '''
-
-@notes_app.route('/')
-@notes_app.route('/index')
-def index():
-    return "This is a homepage!"
