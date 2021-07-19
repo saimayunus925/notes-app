@@ -20,6 +20,11 @@ notesDB = PyMongo(notes_app) # initializing PyMongo() obj for use with our app o
 def index():
     return "This is a homepage!"
 
+# 'add note' route
+@notes_app.route('/add_note')
+def add_note():
+    pass
+
 
 
 
