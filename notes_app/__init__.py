@@ -1,8 +1,9 @@
 
-from flask import Flask, render_template, request, redirect, url_for # importing Flask obj from "flask" module
+from flask import Flask, render_template, request, redirect, url_for, flash # importing Flask obj from "flask" module
 # also importing 'render_template' to render HTML templates
 # also importing 'request' to house/handle data going from client to server
 # also importing 'redirect' and 'url_for' to redirect to other routes
+# also importing 'flash' to display user feedback msgs
 
 from flask_pymongo import PyMongo # importing PyMongo() obj to connect/interface with our MongoDB database
 from .forms import AddNote, SignIn, SignUp # testing if we can import from 'forms.py' 
