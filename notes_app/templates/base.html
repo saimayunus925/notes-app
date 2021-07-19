@@ -11,6 +11,14 @@
 </head>
 <body>
 
+    <!-- site navbar -->
+    <nav class="navbar">
+        <ol>
+            <li class="navbar-link"><a href="{{url_for("index")}}">Home</a></li>
+            <li class="navbar-link"><a href="{{url_for("add_note")}}">Add Note</a></li>
+        </ol>
+    </nav>
+
     {% with messages = get_flashed_messages() %}
     {% if messages %}
         <ul>
