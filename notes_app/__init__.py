@@ -15,6 +15,7 @@ load_dotenv() # loading our env variables
 
 notes_app = Flask(__name__) # initializing our app obj with the current module name
 notes_app.config["MONGO_URI"] = os.getenv("MONGO_URI") # configuring the DB's location here
+notes_app.config["SECRET_KEY"] = os.getenv("SECRET_KEY") # configuring our secret key for Flask web forms here
 notesDB = PyMongo(notes_app) # initializing PyMongo() obj for use with our app obj
 
 ''' ROUTES ARE BELOW FOR NOW '''
