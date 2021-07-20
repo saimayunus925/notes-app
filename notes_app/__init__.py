@@ -5,8 +5,7 @@ from flask import Flask, render_template, request, redirect, url_for, flash # im
 # also importing 'redirect' and 'url_for' to redirect to other routes
 # also importing 'flash' to display user feedback msgs
 
-from flask_pymongo import PyMongo # importing PyMongo() obj to connect/interface with our MongoDB database
-from .forms import AddNote, SignIn, SignUp # testing if we can import from 'forms.py' 
+from flask_sqlalchemy import SQLAlchemy # importing SQLAlchemy obj to interface with our SQLite database
 
 import os # Python's module for interacting with the OS
 from dotenv import load_dotenv # this func finds a .env file in the project dir; if it finds one, 
@@ -14,9 +13,11 @@ from dotenv import load_dotenv # this func finds a .env file in the project dir;
 load_dotenv() # loading our env variables 
 
 notes_app = Flask(__name__) # initializing our app obj with the current module name
-notes_app.config["MONGO_URI"] = os.getenv("MONGO_URI") # configuring the DB's location here
 notes_app.config["SECRET_KEY"] = os.getenv("SECRET_KEY") # configuring our secret key for Flask web forms here
-notesDB = PyMongo(notes_app) # initializing PyMongo() obj for use with our app obj
+notes_app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("SQLALCHEMY_DATABASE_URI") # configuring our SQLAlchemy database location (the /// = relative path, so the database will be somewhere in our project directory)
+notesDB = SQLAlchemy(notes_app) # initializing our SQLAlchemy obj for use with our app obj
+
+from .forms import AddNote, SignIn, SignUp # testing if we can import from 'forms.py' after 'notes_app' is initialized
 
 ''' ROUTES ARE BELOW FOR NOW '''
 
@@ -29,22 +30,7 @@ def index():
 # 'add note' route
 @notes_app.route('/add_note', methods=['POST', 'GET'])
 def add_note():
-    notes_form = AddNote(request.form) # the KV pairs of form data in our request will go to an AddNote() obj
-    # that will be our final 'notes_form' obj
-    if request.method == 'POST': 
-        # data's been POSTed from 'add note' form? insert that data into our DB
-        myNotesTable = notesDB.db.notes # our collection/table of notes
-        # new 'note' record/Python dict/JS obj/MongoDB doc, populated by our form data, to insert into our DB
-        newNote = {
-            "title": notes_form.title.data,
-            "content": notes_form.content.data
-        }
-        myNotesTable.insert_one(newNote) # inserting the 'note' obj/record into our DB
-        flash("Note added successfully!") # 'success' feedback msg if note was added correctly
-        return redirect(url_for("index")) # return to home page
-    else: 
-        # no data POSTed? return HTML form page
-        return render_template('add_note.html', notes_form=notes_form)
+    pass
 
 
 
