@@ -18,6 +18,7 @@ notes_app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("SQLALCHEMY_DATABASE_URI
 notesDB = SQLAlchemy(notes_app) # initializing our SQLAlchemy obj for use with our app obj
 
 from .forms import AddNote, SignIn, SignUp # testing if we can import from 'forms.py' after 'notes_app' is initialized
+from .models import Note # testing if we can import from 'models.py' after 'notes_app' is initialized
 
 ''' ROUTES ARE BELOW FOR NOW '''
 
@@ -26,11 +27,6 @@ from .forms import AddNote, SignIn, SignUp # testing if we can import from 'form
 @notes_app.route('/index')
 def index():
     return render_template('index.html')
-
-# 'add note' route
-@notes_app.route('/add_note', methods=['POST', 'GET'])
-def add_note():
-    pass
 
 
 
