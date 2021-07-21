@@ -28,7 +28,20 @@ from .models import Note # importing our Flask data models (data model: class th
 def index():
     return render_template('index.html')
 
-
+# 'add note' route -> 'C' part of 'CRUD'
+@notes_app.route('/add_note', methods=['POST', 'GET'])
+def add_note():
+    notes_form = AddNote(request.form) # take 'note form' data values from 'request' obj, assign them to 'notes_form' properties to get our final 'note form' obj
+    if request.method == 'POST' and notes_form.validate():
+        # if 'note form' data is POSTing and valid, put the data in a new Note() obj and insert obj into DB
+        new_note = Note(title=notes_form.title.data, content=notes_form.content.data) # 'Note' object with our 'note form' data -> basically, our new note
+        notesDB.session.add(new_note) # insert new note into DB
+        notesDB.session.commit() # commit the change
+        flash("Note added successfully!") # success feedback msg
+        return redirect(url_for("index")) # redirect to home page
+    else:
+        # no data POSTing? return 'add note' pg
+        return render_template('add_note.html', notes_form=notes_form)
 
 
 
