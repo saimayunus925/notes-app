@@ -31,7 +31,7 @@ def index():
 # 'add note' route -> 'C' part of 'CRUD'
 @notes_app.route('/add_note')
 def add_note():
-    notes_form = AddNote(request.form) # take note form data values from 'request' obj, assign them to 'notes_form' properties
+    notes_form = AddNote(request.form) # take 'note form' data values from 'request' obj, assign them to 'notes_form' properties to get our final 'note form' obj
     return render_template('add_note.html', notes_form=notes_form)
 
 
