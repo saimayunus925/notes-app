@@ -28,6 +28,12 @@ from .models import Note # testing if we can import from 'models.py' after 'note
 def index():
     return render_template('index.html')
 
+# 'add note' route -> 'C' part of 'CRUD'
+@notes_app.route('/add_note')
+def add_note():
+    notes_form = AddNote(request.form) # take note form data values from 'request' obj, assign them to 'notes_form' properties
+    return render_template('add_note.html', notes_form=notes_form)
+
 
 
 

@@ -1,3 +1,4 @@
 
 .env
 notesDB.db
+__pycache__/
