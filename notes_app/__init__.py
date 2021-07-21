@@ -17,8 +17,8 @@ notes_app.config["SECRET_KEY"] = os.getenv("SECRET_KEY") # configuring our secre
 notes_app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("SQLALCHEMY_DATABASE_URI") # configuring our SQLAlchemy database location (the /// = relative path, so the database will be somewhere in our project directory)
 notesDB = SQLAlchemy(notes_app) # initializing our SQLAlchemy obj for use with our app obj
 
-from .forms import AddNote, SignIn, SignUp # testing if we can import from 'forms.py' after 'notes_app' is initialized
-from .models import Note # testing if we can import from 'models.py' after 'notes_app' is initialized
+from .forms import AddNote, SignIn, SignUp # importing our Flask form classes
+from .models import Note # importing our Flask data models (data model: class that represents a table in the DB)
 
 ''' ROUTES ARE BELOW FOR NOW '''
 
@@ -28,11 +28,7 @@ from .models import Note # testing if we can import from 'models.py' after 'note
 def index():
     return render_template('index.html')
 
-# 'add note' route -> 'C' part of 'CRUD'
-@notes_app.route('/add_note')
-def add_note():
-    notes_form = AddNote(request.form) # take 'note form' data values from 'request' obj, assign them to 'notes_form' properties to get our final 'note form' obj
-    return render_template('add_note.html', notes_form=notes_form)
+
 
 
 
