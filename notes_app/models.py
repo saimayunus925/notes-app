@@ -15,3 +15,5 @@ class Note(notesDB.Model):
     def __repr__(self):
         # this is how Note objs will be printed
         return f"<Note: {self.title}, {self.date_created}, {self.content}>"
+
+notesDB.create_all() # now that our data models have been created (we just have our 'Note' model for now), let's create the DB
