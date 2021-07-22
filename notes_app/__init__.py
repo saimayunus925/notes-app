@@ -14,7 +14,7 @@ load_dotenv() # loading our env variables
 
 notes_app = Flask(__name__) # initializing our app obj with the current module name
 notes_app.config["SECRET_KEY"] = os.getenv("SECRET_KEY") # configuring our secret key for Flask web forms here
-notes_app.config["SQLALCHEMY_DATABASE_URI"] = os.path.abspath(os.getcwd()) + '\\notesDB.db' # configuring our SQLAlchemy database location in current working directory of current absolute file path
+notes_app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("SQLALCHEMY_DATABASE_URI") # configuring our SQLAlchemy database location 
 notesDB = SQLAlchemy(notes_app) # initializing our SQLAlchemy obj for use with our app obj
 
 from .forms import AddNote, SignIn, SignUp # importing our Flask form classes
