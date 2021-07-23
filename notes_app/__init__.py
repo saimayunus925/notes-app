@@ -17,7 +17,7 @@ notes_app.config["SECRET_KEY"] = os.getenv("SECRET_KEY") # configuring our secre
 notes_app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("SQLALCHEMY_DATABASE_URI") # configuring our SQLAlchemy database location 
 notesDB = SQLAlchemy(notes_app) # initializing our SQLAlchemy obj for use with our app obj
 
-from .forms import AddNote, EditNote, SignIn, SignUp # importing our Flask form classes
+from .forms import AddNote, DeleteNote, EditNote, SignIn, SignUp # importing our Flask form classes
 from .models import Note # importing our Flask data models (data model: class that represents a table in the DB)
 
 ''' ROUTES ARE BELOW FOR NOW '''
@@ -62,7 +62,22 @@ def edit_note(id):
         # no data POSTed? 
         return render_template('edit_note.html', tbe=tbe, new_form=new_form) # return 'edit note' pg with current note TBE and with 'edit note' form
 
-
+# 'delete note' route -> 'D' part of 'CRUD'
+@notes_app.route('/delete_note/<int:id>', methods=['POST', 'GET'])
+def delete_note(id):
+    # 1) using passed-in ID, query DB for note to be deleted (TBD/tbd)
+    tbd = Note.query.get_or_404(id)
+    title = tbd.title
+    # 2) initialize 'DeleteNote' form
+    form = DeleteNote(request.form)
+    if request.method == 'POST' and form.validate():
+        # if data (note title) is POSTing and is valid, delete 'tbd' note from DB
+        notesDB.session.delete(tbd)
+        notesDB.session.commit() # commit the change
+        flash(f"Note '{title}' deleted successfully!") # success feedback msg
+        return redirect(url_for("index")) # redirect back to home page
+    else:
+        return render_template('delete_note.html', tbd=tbd, form=form)
 
 
 
