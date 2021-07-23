@@ -51,7 +51,16 @@ def edit_note(id):
     new_form = EditNote(request.form) # 'edit note' form will probs have same format as 'add note' form
     tbe = Note.query.get_or_404(id) # we query the DB for the note we need; if we can't find it, we return a 404 error; else, we get the correct note. also, 'tbe/TBE' = 'to be edited' here
     # TBE note contents will be used as placeholders for new form
-    return render_template('edit_note.html', tbe=tbe, new_form=new_form) # return 'edit note' pg with current note TBE and with 'edit note' form
+    if request.method == "POST" and new_form.validate():
+        # if data is POSTed and valid, insert new note data into DB
+        tbe.title = new_form.title.data
+        tbe.content = new_form.content.data
+        notesDB.session.commit() # commit the change
+        flash(f"Note '{tbe.title}'' edited successfully!") # success feedback msg
+        return redirect(url_for("index")) # redirect back to home page
+    else:
+        # no data POSTed? 
+        return render_template('edit_note.html', tbe=tbe, new_form=new_form) # return 'edit note' pg with current note TBE and with 'edit note' form
 
 
 
