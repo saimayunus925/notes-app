@@ -5,28 +5,7 @@
 
 {% block content %}
 
-    <!-- list of notes -->
-    {% for note in notes %}
-    <table class="notesTable">
-        <tr>
-            <td>Title</td>
-            <td>Date Created</td>
-            <td>Content</td>
-            <td>Actions</td>
-        </tr>
-        <tr>
-            <td>{{note.title}}</td>
-            <td>{{note.date_created.date()}}</td>
-            <td>{{note.content}}</td>
-            <td>
-                <a href="#">Delete</a>
-                <br>
-                <a href="#">Edit</a>
-            </td>
-        </tr>
-    </table>
-    {% endfor %}
-
+    <!-- home page content -->
     <h3>The notes app of tomorrow - available today!</h3>
     <p>
         Whether you want to keep an online diary, keep a list of errands/reminders, or note down 
@@ -53,4 +32,30 @@
     <button>
         <a href="{{url_for("add_note")}}">Add a Note!</a>
     </button>
+
+    <br>
+    <br>
+
+    <!-- list of notes -->
+    {% for note in notes %}
+    <table class="table table-bordered table-striped table-sm">
+        <tr>
+            <th scope="col">Title</th>
+            <th scope="col">Date Created</th>
+            <th scope="col">Content</th>
+            <th scope="col">Actions</th>
+        </tr>
+        <tr>
+            <td>{{note.title}}</td>
+            <td>{{note.date_created.date()}}</td>
+            <td>{{note.content}}</td>
+            <td>
+                <a href="#">Delete</a>
+                <br>
+                <a href="#">Edit</a>
+            </td>
+        </tr>
+    </table>
+    {% endfor %}
+
 {% endblock %}
