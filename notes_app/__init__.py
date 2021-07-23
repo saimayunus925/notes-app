@@ -56,7 +56,7 @@ def edit_note(id):
         tbe.title = new_form.title.data
         tbe.content = new_form.content.data
         notesDB.session.commit() # commit the change
-        flash(f"Note '{tbe.title}'' edited successfully!") # success feedback msg
+        flash(f"Note '{tbe.title}' edited successfully!") # success feedback msg
         return redirect(url_for("index")) # redirect back to home page
     else:
         # no data POSTed? 
