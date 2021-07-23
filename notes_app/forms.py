@@ -8,6 +8,12 @@ class AddNote(Form):
     content = TextAreaField('Content', [validators.DataRequired()]) # note content, also can't be empty
     submit_button = SubmitField('Add Note') # the 'submit' button for the 'add-note' form
 
+# 'edit note' form
+class EditNote(Form):
+    title = StringField('Title', [validators.DataRequired()]) # note title, can't be empty
+    content = TextAreaField('Content', [validators.DataRequired()]) # note content, also can't be empty
+    submit_button = SubmitField('Edit Note') # the 'submit' button for the 'edit-note' form
+
 # 'register' form
 class SignUp(Form):
     username = StringField('Username', [validators.DataRequired()]) # account username, can't be empty

@@ -1,0 +1,19 @@
+
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>Edit Note</title>
+{% endblock %}
+
+{% block content %}
+    <form action="/edit_note" method="POST">
+        <!-- we are POSTing our note data to 'edit_note' route whenever we submit the form -->
+        <!-- note title -->
+        {{ new_form.title.label }} {{ new_form.title(placeholder=tbe.title.data) }} 
+        <!-- note content -->
+        {{ new_form.content.label }} 
+        {{ new_form.content(placeholder=tbe.content.data) }}
+        <!-- 'edit note' button -->
+        {{ new_form.submit_button }}
+    </form>
+{% endblock %}

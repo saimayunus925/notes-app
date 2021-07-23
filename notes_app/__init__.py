@@ -17,7 +17,7 @@ notes_app.config["SECRET_KEY"] = os.getenv("SECRET_KEY") # configuring our secre
 notes_app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("SQLALCHEMY_DATABASE_URI") # configuring our SQLAlchemy database location 
 notesDB = SQLAlchemy(notes_app) # initializing our SQLAlchemy obj for use with our app obj
 
-from .forms import AddNote, SignIn, SignUp # importing our Flask form classes
+from .forms import AddNote, EditNote, SignIn, SignUp # importing our Flask form classes
 from .models import Note # importing our Flask data models (data model: class that represents a table in the DB)
 
 ''' ROUTES ARE BELOW FOR NOW '''
@@ -43,6 +43,17 @@ def add_note():
     else:
         # no data POSTing? return 'add note' pg
         return render_template('add_note.html', notes_form=notes_form)
+
+# 'edit note' route -> 'U' part of 'CRUD'
+@notes_app.route('/edit_note/<int:id>', methods=['POST', 'GET'])
+def edit_note(id):
+    # the ID of the note we wanna edit is passed in, so we'll use that to get the note
+    new_form = EditNote(request.form) # 'edit note' form will probs have same format as 'add note' form
+    tbe = Note.query.get_or_404(id) # we query the DB for the note we need; if we can't find it, we return a 404 error; else, we get the correct note. also, 'tbe/TBE' = 'to be edited' here
+    # TBE note contents will be used as placeholders for new form
+    new_form.title(placeholder=tbe.title)
+    new_form.content(placeholder=tbe.content)
+    return render_template('edit_note.html', tbe=tbe, new_form=new_form) # return 'edit note' pg with current note TBE and with 'edit note' form
 
 
 
