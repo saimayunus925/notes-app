@@ -4,6 +4,8 @@
 {% block title %}<title>Home Page</title>{% endblock %}
 
 {% block content %}
+
+    <!-- home page content -->
     <h3>The notes app of tomorrow - available today!</h3>
     <p>
         Whether you want to keep an online diary, keep a list of errands/reminders, or note down 
@@ -12,12 +14,13 @@
     <h5>Current Features: </h5>
     <ul>
         <li>Home Page</li>
+        <li>Functional 'Add Note' Page</li>
     </ul>
     <h5>Upcoming Features: </h5>
     <ul>
         <li>CRUD functionality for notes (create/read/update/delete)
             <ul> 
-                <li>'add note' page</li>
+                <li><strike>'add note' page</strike></li>
                 <li>'read note' page</li>
                 <li>'edit note' page</li>
                 <li>'delete note' page</li>
@@ -27,6 +30,38 @@
             (such as a secure online diary)</li>
     </ul>
     <button>
-        <a href="{{url_for("add_note")}}">Add a Note!</a>
+        <a href="{{ url_for('add_note') }}">Add a Note!</a>
     </button>
+
+    <br>
+
+    <!-- list of notes ('R' part of 'CRUD', maybe)-->
+    
+    <table class="table table-bordered table-striped table-sm">
+        <caption style="caption-side: top;text-align: center;" id="">List of Notes</caption>
+        <thead>
+            <tr>
+                <th scope="col">Title</th>
+                <th scope="col">Date Created</th>
+                <th scope="col">Content</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for note in notes %}
+                <tr>
+                    <td>{{note.title}}</td>
+                    <td>{{note.date_created.date()}}</td>
+                    <td>{{note.content}}</td>
+                    <td>
+                        <a href="{{ url_for('delete_note', id=note.id) }}">Delete</a>
+                        <br>
+                        <a href="{{ url_for('edit_note', id=note.id) }}">Edit</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+
 {% endblock %}

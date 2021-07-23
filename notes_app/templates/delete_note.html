@@ -1,0 +1,17 @@
+
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>Delete Note</title>
+{% endblock %}
+
+{% block content %}
+    <form action="/delete_note/{{tbd.id}}" method="POST">
+        <!-- we are POSTing our note data to 'delete_note' route whenever we submit the form -->
+        <h5>Are you sure you want to delete this note? If so, please enter '{{tbd.title}}' into the form below.</h5>
+        <!-- note title -->
+        {{ form.title.label }} {{ form.title(placeholder=tbd.title) }} 
+        <!-- 'delete note' button -->
+        {{ form.submit_button }}
+    </form>
+{% endblock %}
