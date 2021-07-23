@@ -4,6 +4,29 @@
 {% block title %}<title>Home Page</title>{% endblock %}
 
 {% block content %}
+
+    <!-- list of notes -->
+    {% for note in notes %}
+    <table class="notesTable">
+        <tr>
+            <td>Title</td>
+            <td>Date Created</td>
+            <td>Content</td>
+            <td>Actions</td>
+        </tr>
+        <tr>
+            <td>{{note.title}}</td>
+            <td>{{note.date_created.date()}}</td>
+            <td>{{note.content}}</td>
+            <td>
+                <a href="#">Delete</a>
+                <br>
+                <a href="#">Edit</a>
+            </td>
+        </tr>
+    </table>
+    {% endfor %}
+
     <h3>The notes app of tomorrow - available today!</h3>
     <p>
         Whether you want to keep an online diary, keep a list of errands/reminders, or note down 

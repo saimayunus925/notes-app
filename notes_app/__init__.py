@@ -26,7 +26,8 @@ from .models import Note # importing our Flask data models (data model: class th
 @notes_app.route('/')
 @notes_app.route('/index')
 def index():
-    return render_template('index.html')
+    notes = Note.query.order_by(Note.date_created).all() # list of all notes in DB, ordered by when they were created
+    return render_template('index.html', notes=notes) # return home page with 'notes' passed in
 
 # 'add note' route -> 'C' part of 'CRUD'
 @notes_app.route('/add_note', methods=['POST', 'GET'])
