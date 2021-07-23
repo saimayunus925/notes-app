@@ -32,7 +32,7 @@
             (such as a secure online diary)</li>
     </ul>
     <button>
-        <a href="{{ url_for('add_note') }}">Add a Note!</a>
+        <a href="{{ url_for('CRUD.add_note') }}">Add a Note!</a>
     </button>
 
     <br>
@@ -56,9 +56,9 @@
                     <td>{{note.date_created.date()}}</td>
                     <td>{{note.content}}</td>
                     <td>
-                        <a href="{{ url_for('delete_note', id=note.id) }}">Delete</a>
+                        <a href="{{ url_for('CRUD.delete_note', id=note.id) }}">Delete</a>
                         <br>
-                        <a href="{{ url_for('edit_note', id=note.id) }}">Edit</a>
+                        <a href="{{ url_for('CRUD.edit_note', id=note.id) }}">Edit</a>
                     </td>
                 </tr>
             {% endfor %}
