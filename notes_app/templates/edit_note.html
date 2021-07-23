@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block content %}
-    <form action="/edit_note" method="POST">
+    <form action="/edit_note/{{tbe.id}}" method="POST">
         <!-- we are POSTing our note data to 'edit_note' route whenever we submit the form -->
         <!-- note title -->
         {{ new_form.title.label }} {{ new_form.title(placeholder=tbe.title) }} 
