@@ -9,10 +9,10 @@
     <form action="/edit_note" method="POST">
         <!-- we are POSTing our note data to 'edit_note' route whenever we submit the form -->
         <!-- note title -->
-        {{ new_form.title.label }} {{ new_form.title(placeholder=tbe.title.data) }} 
+        {{ new_form.title.label }} {{ new_form.title(placeholder=tbe.title) }} 
         <!-- note content -->
         {{ new_form.content.label }} 
-        {{ new_form.content(placeholder=tbe.content.data) }}
+        {{ new_form.content(placeholder=tbe.content) }}
         <!-- 'edit note' button -->
         {{ new_form.submit_button }}
     </form>
