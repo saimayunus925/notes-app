@@ -2,5 +2,4 @@
 .env
 notesDB.db
 *.pyc
-requirements.txt
 __pycache__/
