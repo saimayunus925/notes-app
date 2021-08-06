@@ -1,2 +1,2 @@
 
-web: gunicorn run:notes_app
+web:gunicorn notes_app:notes_app
