@@ -1,1 +1,1 @@
-web: gunicorn app:quiet-meadow
+web: gunicorn app:run
