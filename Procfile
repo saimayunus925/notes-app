@@ -1,1 +1,1 @@
-web: gunicorn app:notes-app
+web: gunicorn app:quiet-meadow
