@@ -1,2 +1,3 @@
 
-web:gunicorn notes_app:notes_app
+web:gunicorn 
+wsgi:notes_app
