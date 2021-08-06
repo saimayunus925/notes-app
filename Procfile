@@ -1,0 +1,1 @@
+web: gunicorn app:notes_app
