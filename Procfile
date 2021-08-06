@@ -1,1 +1,1 @@
-web: gunicorn app:notes_app
+web: gunicorn app:notes-app
